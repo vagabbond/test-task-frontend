@@ -15,7 +15,7 @@ export const fetchColumns = createAsyncThunk(
  "columns/fetchColumns",
  async (boardId: string, { rejectWithValue }) => {
   try {
-   const response = await axios.get(`api/columns/${boardId}`);
+   const response = await axios.get(`/api/columns/${boardId}`);
    return response.data;
   } catch (error) {
    if (axios.isAxiosError(error) && error.response) {
@@ -36,7 +36,7 @@ export const changeTaskOrder = createAsyncThunk(
   { rejectWithValue }
  ) => {
   try {
-   const res = await axios.patch(`api/columns/order/${columnId}`, {
+   const res = await axios.patch(`/api/columns/order/${columnId}`, {
     taskId,
     insertAtIndex,
    });
@@ -53,7 +53,7 @@ export const addTask = createAsyncThunk(
  "columns/createTask",
  async (params: IAddProps, { rejectWithValue }) => {
   try {
-   const response = await axios.post(`api/columns/${params.columnId}`, {
+   const response = await axios.post(`/api/columns/${params.columnId}`, {
     title: params.title,
     caption: params.caption,
    });
@@ -80,7 +80,7 @@ export const moveTask = createAsyncThunk(
   { rejectWithValue }
  ) => {
   try {
-   const res = await axios.patch(`api/columns/${newColumnId}`, {
+   const res = await axios.patch(`/api/columns/${newColumnId}`, {
     taskId,
     fromColumnId,
     insertAtIndex,
@@ -108,8 +108,7 @@ export const deleteTask = createAsyncThunk(
  "tasks/deleteTask",
  async ({ taskId, columnId }: IDeletProps, { rejectWithValue }) => {
   try {
-   console.log("taskid in front" + taskId + "columnId in front" + columnId);
-   await axios.delete(`api/columns/${columnId}/task/${taskId}`);
+   await axios.delete(`/api/columns/${columnId}/task/${taskId}`);
    return { taskId };
   } catch (error) {
    if (axios.isAxiosError(error) && error.response) {
@@ -130,7 +129,7 @@ export const editTask = createAsyncThunk(
   { rejectWithValue }
  ) => {
   try {
-   const resp = await axios.patch(`api/columns/task/${taskId}`, {
+   const resp = await axios.patch(`/api/columns/task/${taskId}`, {
     caption,
     columnId,
     title,

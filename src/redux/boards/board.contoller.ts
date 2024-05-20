@@ -3,7 +3,8 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { IError } from "../../utils/types";
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:3001";
+axios.defaults.baseURL =
+ "https://test-task-backend-production-9f32.up.railway.app";
 
 export const createBoard = createAsyncThunk(
  "board/createBoard",
